@@ -292,10 +292,12 @@
                     <h3 class="text-xl font-bold text-white mb-2">Completa tus datos para reservar fecha</h3>
                     <p class="text-slate-400 text-xs mb-6">Conectado de forma segura a nuestro buzón de recepción vía Web3Forms.</p>
                     
-                    <!-- FORMULARIO CONFIGURADO PARA WEB3FORMS -->
-                    <div class="space-y-4">
-                        
-                        
+    <!-- FORMULARIO CONFIGURADO PARA WEB3FORMS -->
+    <form action="https://web3forms.com" method="POST" class="space-y-4">
+        <!-- Llave verificada que manda directo a livesellmx@gmail.com -->
+        <input type="hidden" name="access_key" value="37385633-451e-4f6a-b21c-27282e934b73">
+        <input type="hidden" name="subject" value="Nueva Solicitud de Reserva y Enlace de Pago - LiveSellMX">
+        <input type="hidden" name="redirect" value="https://github.io">
 
                         <div class="grid sm:grid-cols-2 gap-4">
                             <div>
@@ -333,7 +335,7 @@
                             <label for="detalles" class="block text-xs font-semibold text-slate-300 mb-1">Detalles de la Locación o Proyecto (Opcional)</label>
                             <textarea id="detalles" name="detalles" rows="3" placeholder="¿Dónde es la transmisión? ¿Qué productos o propiedad se va a mostrar?" class="w-full bg-slate-900/90 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:ring-2 focus:ring-clip/50 focus:border-clip transition"></textarea>
                         </div>
-<button type="button" id="manual-popup-trigger" class="w-full bg-gradient-to-r from-clip to-orange-600 hover:from-orange-600 hover:to-clip text-white font-extrabold py-4 rounded-xl shadow-lg shadow-clip/20 transition flex items-center justify-center gap-2 focus:outline-none focus:ring-2 focus:ring-clip focus:ring-offset-2 focus:ring-offset-brand-card" onclick="const popup = document.querySelector('.msg-modal, .ghl-popup, [id*=\'popup\'], [class*=\'modal\'], [class*=\'popup\']'); if(popup) { popup.style.setProperty('display', 'flex', 'important'); popup.style.setProperty('opacity', '1', 'important'); popup.style.setProperty('visibility', 'visible', 'important'); } else { alert('Inicializando el formulario de GoHighLevel... Intenta dar clic de nuevo en 2 segundos.'); }">
+<button type="submit" class="w-full bg-gradient-to-r from-clip to-orange-600 hover:from-orange-600 hover:to-clip text-white font-extrabold py-4 rounded-xl shadow-lg shadow-clip/20 transition flex items-center justify-center gap-2 focus:outline-none focus:ring-2 focus:ring-clip focus:ring-offset-2 focus:ring-offset-brand-card">
     <span>Solicitar Fecha y Enlace de Pago Asignado</span>
     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
@@ -341,7 +343,8 @@
 </button>
 
 
-                        </div>
+                        </form>
+
                     </div>
                 </div>
 
