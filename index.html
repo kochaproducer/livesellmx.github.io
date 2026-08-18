@@ -15,7 +15,8 @@
     <!-- Preconexión de fuentes para rendimiento (Performance) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://googleapis.com">
+
     
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -292,13 +293,9 @@
                     <p class="text-slate-400 text-xs mb-6">Conectado de forma segura a nuestro buzón de recepción vía Web3Forms.</p>
                     
                     <!-- FORMULARIO CONFIGURADO PARA WEB3FORMS -->
-                    <form action="https://api.web3forms.com/submit" method="POST" class="space-y-4">
+                    <div class="space-y-4">
                         
-                        <!-- CLAVE DE ACCESO WEB3FORMS (Reemplaza TU_ACCESS_KEY_AQUI con tu llave real obtenida en web3forms.com) -->
-                        <input type="hidden" name="access_key" value="37385633-451e-4f6a-b21c-27282e934b73">
-                        <input type="hidden" name="subject" value="Nueva Solicitud de Reserva y Enlace de Pago - LiveSellMX">
-                        <!-- Campo anti-spam honeypot oculto -->
-                        <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+                        
 
                         <div class="grid sm:grid-cols-2 gap-4">
                             <div>
@@ -337,16 +334,16 @@
                             <textarea id="detalles" name="detalles" rows="3" placeholder="¿Dónde es la transmisión? ¿Qué productos o propiedad se va a mostrar?" class="w-full bg-slate-900/90 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:ring-2 focus:ring-clip/50 focus:border-clip transition"></textarea>
                         </div>
 
-                        <div class="pt-2">
-                            <button type="submit" class="w-full bg-gradient-to-r from-clip to-orange-600 hover:from-orange-600 hover:to-clip text-white font-extrabold py-4 rounded-xl shadow-lg shadow-clip/20 transition flex items-center justify-center gap-2 focus:outline-none focus:ring-2 focus:ring-clip focus:ring-offset-2 focus:ring-offset-brand-card">
-                                <span>Solicitar Fecha y Enlace de Pago Asignado</span>
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                            </button>
+                        <button type="button" id="manual-popup-trigger" class="w-full bg-gradient-to-r from-clip to-orange-600 hover:from-orange-600 hover:to-clip text-white font-extrabold py-4 rounded-xl shadow-lg shadow-clip/20 transition flex items-center justify-center gap-2 focus:outline-none focus:ring-2 focus:ring-clip focus:ring-offset-2 focus:ring-offset-brand-card">
+    <span>Solicitar Fecha y Enlace de Pago Asignado</span>
+    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+    </svg>
+</button>
                         </div>
-                    </form>
+                    </div>
                 </div>
 
-            </div>
         </section>
     </main>
 
@@ -361,6 +358,25 @@
             *Meses Sin Intereses (MSI) disponibles con tarjetas participantes de crédito emitidas en México a través de la plataforma de cobro <strong>Clip</strong>. Aplican restricciones, montos mínimos y comisiones por diferimiento según los términos bancarios vigentes en 2026. Procesamiento seguro de tarjetas bancarias internacionales y cobros empresariales gestionados vía <strong>Stripe</strong>.
         </p>
     </footer>
-
+<iframe
+    src="https://api.leadconnectorhq.com/widget/form/vzYqCs15ApxC2rCbZbN9"
+    style="display:none;width:100%;height:100%;border:none;border-radius:8px"
+    id="popup-vzYqCs15ApxC2rCbZbN9" 
+    data-layout="{'id':'POPUP'}"
+    data-trigger-type="alwaysShow"
+    data-trigger-value=""
+    data-activation-type="alwaysActivated"
+    data-activation-value=""
+    data-deactivation-type="neverDeactivate"
+    data-deactivation-value=""
+    data-form-name="Captacion LiveSellmx"
+    data-height="1012"
+    data-layout-iframe-id="popup-vzYqCs15ApxC2rCbZbN9"
+    data-form-id="vzYqCs15ApxC2rCbZbN9"
+    title="Captacion LiveSellmx"
+    data-modal-height="500"
+        >
+</iframe>
+<script src="https://link.msgsndr.com/js/form_embed.js"></script>
 </body>
 </html>
