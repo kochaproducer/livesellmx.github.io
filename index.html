@@ -293,12 +293,11 @@
                     <p class="text-slate-400 text-xs mb-6">Conectado de forma segura a nuestro buzón de recepción vía Web3Forms.</p>
                     
     <!-- FORMULARIO CONFIGURADO PARA WEB3FORMS -->
-    <form action="https://web3forms.com" method="POST" class="space-y-4">
-        <!-- Llave verificada que manda directo a livesellmx@gmail.com -->
-        <input type="hidden" name="access_key" value="37385633-451e-4f6a-b21c-27282e934b73">
-        <input type="hidden" name="subject" value="Nueva Solicitud de Reserva y Enlace de Pago - LiveSellMX">
-        <input type="hidden" name="redirect" value="https://github.io">
-
+    <form action="https://api.web3forms.com/submit" method="POST" class="space-y-4">
+    <!-- Llave verificada que manda directo a livesellmx@gmail.com -->
+    <input type="hidden" name="access_key" value="37385633-451e-4f6a-b21c-27282e934b73">
+    <input type="hidden" name="subject" value="Nueva Solicitud de Reserva y Enlace de Pago - LiveSellMX">
+    <input type="hidden" name="redirect" value="https://kochaproducer.github.io/livesellmx.github.io/">
                         <div class="grid sm:grid-cols-2 gap-4">
                             <div>
                                 <label for="nombre" class="block text-xs font-semibold text-slate-300 mb-1">Nombre Completo *</label>
