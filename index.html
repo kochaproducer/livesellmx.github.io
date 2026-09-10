@@ -1,385 +1,593 @@
 <!DOCTYPE html>
 <html lang="es" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- Metadatos SEO & Open Graph para compartir enlaces profesionalmente -->
-    <title>LiveSellmx Riviera | Agencia de Live Shopping & Broadcast</title>
-    <meta name="description" content="Producción móvil de Live Shopping, Tours Inmobiliarios y Podcasts con calidad broadcast en Cancún y la Riviera Maya.">
-    <meta name="theme-color" content="#0B0F19">
-    <meta property="og:title" content="StreamPro Riviera | Live Shopping & Broadcast">
-    <meta property="og:description" content="Eleva tus ventas con transmisiones en vivo de calidad televisiva. Ingeniería de audio y video 4K para marcas y Real Estate.">
-    <meta property="og:type" content="website">
-    
-    <!-- Preconexión de fuentes para rendimiento (Performance) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://googleapis.com">
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+   <title>LiveSellMX Riviera | Agencia de Live Shopping & Broadcast</title>
+   <meta name="description" content="Producción móvil de Live Shopping, Tours Inmobiliarios y Podcasts con calidad broadcast en Cancún y la Riviera Maya.">
+   <meta name="theme-color" content="#0B0F19">
+   <meta property="og:title" content="LiveSellMX Riviera | Live Shopping & Broadcast">
+   <meta property="og:description" content="Eleva tus ventas con transmisiones en vivo de calidad televisiva.">
+   <meta property="og:type" content="website">
+   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22><path fill=%22%23FF5C35%22 d=%22M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z%22/></svg>">
+   
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
 
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Plus Jakarta Sans', 'sans-serif'],
-                    },
-                    colors: {
-                        clip: '#FF5C35', // Naranja Clip
-                        stripe: '#635BFF', // Morado Stripe
-                        brand: {
-                            dark: '#0B0F19',
-                            card: '#111827',
-                            border: '#1E293B',
-                            accent: '#3B82F6'
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        /* Patrón de rejilla cinematográfica de fondo optimizado */
-        .bg-grid-pattern {
-            background-size: 40px 40px;
-            background-image: 
-                linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-        }
-    </style>
+   <script src="https://cdn.tailwindcss.com"></script>
+   <script>
+       tailwind.config = {
+           theme: {
+               extend: {
+                   fontFamily: {
+                       sans: ['Plus Jakarta Sans', 'sans-serif'],
+                   },
+                   colors: {
+                       clip: '#FF5C35',
+                       stripe: '#635BFF',
+                       brand: {
+                           dark: '#0B0F19',
+                           card: '#111827',
+                           border: '#1E293B',
+                           accent: '#3B82F6'
+                       }
+                   }
+               }
+           }
+       }
+   </script>
+   <style>
+       .bg-grid-pattern {
+           background-size: 40px 40px;
+           background-image: 
+               linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+               linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+       }
+       
+       @keyframes fadeInUp {
+           from {
+               opacity: 0;
+               transform: translateY(20px);
+           }
+           to {
+               opacity: 1;
+               transform: translateY(0);
+           }
+       }
+       
+       .fade-in-up {
+           opacity: 0; /* Asegurar que no se vean antes de la animación */
+           animation: fadeInUp 0.6s ease-out forwards;
+           animation-play-state: paused; /* Pausar la animación inicialmente */
+       }
+
+       /* Clase para iniciar la animación cuando el elemento es visible */
+       .fade-in-up.is-visible {
+           animation-play-state: running;
+       }
+
+       /* Ocultar inicialmente el mensaje de éxito */
+       #success-message {
+           display: none;
+       }
+   </style>
 </head>
 <body class="bg-brand-dark text-slate-100 font-sans antialiased selection:bg-clip selection:text-white relative overflow-x-hidden">
 
-    <!-- BOTÓN FLOTANTE DE WHATSAPP (CTA SIEMPRE VISIBLE) -->
-    <a href="https://wa.me/529985405236?text=Hola,%20necesito%20asesoría%20urgente%20para%20una%20transmisión%20en%20vivo" target="_blank" rel="noopener noreferrer" class="fixed bottom-6 right-6 z-50 bg-[#25D366] hover:bg-[#20bd5a] text-white p-4 rounded-full shadow-2xl shadow-[#25D366]/30 transition-all duration-300 hover:scale-110 flex items-center justify-center group" aria-label="Contactar a soporte de producción por WhatsApp">
-        <svg class="w-7 h-7 fill-current" viewBox="0 0 24 24" aria-hidden="true"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.618-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824zm-3.423-14.416c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm.029 18.88c-1.161 0-2.305-.292-3.318-.844l-3.677.964.984-3.595c-.607-1.052-.927-2.246-.926-3.468.001-3.825 3.113-6.937 6.937-6.937 1.856.001 3.601.723 4.914 2.036 1.313 1.313 2.035 3.058 2.035 4.914-.001 3.825-3.113 6.93-6.949 6.93z"/></svg>
-    </a>
+   <a href="https://wa.me/529985405236?text=Hola,%20necesito%20asesoría%20urgente%20para%20una%20transmisión%20en%20vivo" target="_blank" rel="noopener noreferrer" class="fixed bottom-6 right-6 z-50 bg-[#25D366] hover:bg-[#20bd5a] text-white p-4 rounded-full shadow-2xl shadow-[#25D366]/30 transition-all duration-300 hover:scale-110 flex items-center justify-center group" aria-label="Contactar por WhatsApp">
+       <svg class="w-7 h-7 fill-current" viewBox="0 0 24 24" aria-hidden="true"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.618-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824zm-3.423-14.416c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm.029 18.88c-1.161 0-2.305-.292-3.318-.844l-3.677.964.984-3.595c-.607-1.052-.927-2.246-.926-3.468.001-3.825 3.113-6.937 6.937-6.937 1.856.001 3.601.723 4.914 2.036 1.313 1.313 2.035 3.058 2.035 4.914-.001 3.825-3.113 6.93-6.949 6.93z"/></svg>
+   </a>
 
-    <!-- BARRA DE ANUNCIO MSI & STRIPE -->
-    <aside class="bg-gradient-to-r from-slate-900 via-brand-card to-slate-900 border-b border-slate-800 text-slate-300 text-center py-2.5 px-4 text-xs md:text-sm font-semibold tracking-wide flex items-center justify-center gap-3" role="alert">
-        <span class="flex h-2 w-2 relative" aria-hidden="true">
-          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-          <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-        </span>
-        <span>PAGOS SEGUROS EN LÍNEA: TARJETAS VÍA <strong class="text-white font-bold">STRIPE</strong> Y MESES SIN INTERESES* CON <strong class="text-clip font-bold">CLIP</strong></span>
-    </aside>
+   <aside class="bg-gradient-to-r from-slate-900 via-brand-card to-slate-900 border-b border-slate-800 text-slate-300 text-center py-2.5 px-4 text-xs md:text-sm font-semibold tracking-wide flex items-center justify-center gap-3" role="alert">
+       <span class="flex h-2 w-2 relative">
+         <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+         <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+       </span>
+       <span>PAGOS SEGUROS: TARJETAS VÍA <strong class="text-white font-bold">STRIPE</strong> Y MESES SIN INTERESES* CON <strong class="text-clip font-bold">CLIP</strong></span>
+   </aside>
 
-    <!-- FONDO CINEMATOGRÁFICO Y REJILLA -->
-    <div class="absolute inset-0 bg-grid-pattern opacity-40 pointer-events-none -z-20" aria-hidden="true"></div>
-    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[600px] bg-gradient-to-tr from-blue-600/10 via-orange-500/10 to-purple-600/15 blur-[140px] -z-10 pointer-events-none" aria-hidden="true"></div>
+   <div class="absolute inset-0 bg-grid-pattern opacity-40 pointer-events-none -z-20"></div>
+   <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[600px] bg-gradient-to-tr from-blue-600/10 via-orange-500/10 to-purple-600/15 blur-[140px] -z-10 pointer-events-none"></div>
 
-    <!-- NAVEGACIÓN -->
-    <nav class="max-w-7xl mx-auto px-6 py-6 flex justify-between items-center border-b border-slate-800/80 backdrop-blur-md sticky top-0 z-40 bg-brand-dark/80" role="navigation" aria-label="Navegación principal">
-        <div class="text-xl font-extrabold tracking-tighter flex items-center gap-2">
-            <svg class="w-6 h-6 text-clip" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
-            <span>LiveSell<span class="text-clip">MX</span></span> 
-            <span class="text-[10px] uppercase bg-slate-800/80 text-slate-400 px-2 py-0.5 rounded border border-slate-700 ml-1">Commerce</span>
-        </div>
-        <div class="flex items-center gap-4">
-            <a href="#agendar" class="bg-white hover:bg-slate-200 text-slate-900 font-bold px-5 py-2.5 rounded-full text-sm transition shadow-lg shadow-white/10 focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-brand-dark">
-                Agendar Producción
-            </a>
-        </div>
-    </nav>
+   <nav class="max-w-7xl mx-auto px-6 py-6 flex justify-between items-center border-b border-slate-800/80 backdrop-blur-md sticky top-0 z-40 bg-brand-dark/80">
+       <div class="text-xl font-extrabold tracking-tighter flex items-center gap-2">
+           <svg class="w-6 h-6 text-clip" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+           <span>LiveSell<span class="text-clip">MX</span></span> 
+           <span class="text-[10px] uppercase bg-slate-800/80 text-slate-400 px-2 py-0.5 rounded border border-slate-700 ml-1">Commerce</span>
+       </div>
+       <div class="flex items-center gap-4">
+           <a href="#agendar" class="bg-white hover:bg-slate-200 text-slate-900 font-bold px-5 py-2.5 rounded-full text-sm transition shadow-lg shadow-white/10 focus:outline-none focus:ring-2 focus:ring-white/50">
+               Agendar Producción
+           </a>
+       </div>
+   </nav>
 
-    <!-- CONTENIDO PRINCIPAL -->
-    <main>
-        <!-- HERO SECTION -->
-        <header class="max-w-5xl mx-auto px-6 pt-20 pb-24 text-center relative">
-            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-slate-700/80 bg-slate-900/80 backdrop-blur-sm text-slate-300 text-xs md:text-sm mb-8 shadow-inner">
-                <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-                <span>El 80% de las ventas en vivo dependen de un audio y video impecable</span>
-            </div>
-            <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-none mb-8">
-                Cada segundo sin producción profesional le cuesta clientes.  <span class="text-transparent bg-clip-text bg-gradient-to-r from-clip via-orange-400 to-amber-300">Nuestro Talento y Tecnología convierten tiempo en ventas reales.</span>
-            </h1>
-            <p class="text-lg md:text-xl text-slate-400 max-w-3xl mx-auto mb-10 leading-relaxed font-normal">
-                Convertimos tus redes sociales en un canal de ventas masivo. Producción móvil de <strong class="text-white font-semibold">Live Shopping, Tours Inmobiliarios y Podcasts</strong> con calidad broadcast y audio profesional en Cancún, Riviera Maya y producciones remotas.
-                <strong class="text-white font-semibold">En LiveSellmx</strong>  
-                <p class="text-lg md:text-xl text-slate-400 max-w-3xl mx-auto mb-10 leading-relaxed font-normal"> No somos una agencia de marketing tradicional; somos el brazo tecnológico y operativo que tu negocio necesita para vender en vivo. Con equipo de estándar profesional y portabilidad absoluta, llevamos la experiencia de tu marca directamente a la pantalla del cliente.
-                <p class="text-lg md:text-xl text-slate-400 max-w-3xl mx-auto mb-10 leading-relaxed font-normal"> Tras años operando como marca blanca para las productoras más exigentes, hoy ponemos nuestra ingeniería al servicio de tu empresa. El objetivo es simple: Streaming en tiempo real que genera comunidad, retención y, sobre todo, ventas auténticas.
-            </p>
-            <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <a href="#agendar" class="bg-gradient-to-r from-clip to-orange-600 hover:from-orange-600 hover:to-clip text-white font-extrabold px-8 py-4 rounded-xl text-lg transition-all shadow-xl shadow-clip/20 flex items-center justify-center gap-3 group focus:outline-none focus:ring-2 focus:ring-clip/50 focus:ring-offset-2 focus:ring-offset-brand-dark">
-                    <span>Agendar Mi Producción</span>
-                    <svg class="w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
-                </a>
-                <a href="#paquetes" class="bg-slate-900/80 hover:bg-slate-800 border border-slate-700 text-slate-200 font-semibold px-8 py-4 rounded-xl text-lg transition flex items-center justify-center gap-2 focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2 focus:ring-offset-brand-dark">
-                    <span>Ver Paquetes e Inversión</span>
-                </a>
-            </div>
-        </header>
+   <main>
+       <header class="max-w-5xl mx-auto px-6 pt-20 pb-24 text-center relative">
+           <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-slate-700/80 bg-slate-900/80 backdrop-blur-sm text-slate-300 text-xs md:text-sm mb-8 shadow-inner">
+               <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+               <span>El 80% de las ventas en vivo dependen de un audio y video impecable</span>
+           </div>
+           <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-none mb-8">
+               Cada segundo sin producción profesional le cuesta clientes. <span class="text-transparent bg-clip-text bg-gradient-to-r from-clip via-orange-400 to-amber-300">Nuestro Talento y Tecnología convierten tiempo en ventas reales.</span>
+           </h1>
+           <p class="text-lg md:text-xl text-slate-400 max-w-3xl mx-auto mb-6 leading-relaxed font-normal">
+               Convertimos tus redes sociales en un canal de ventas masivo. Producción móvil de <strong class="text-white font-semibold">Live Shopping, Tours Inmobiliarios y Podcasts</strong> con calidad broadcast y audio profesional en Cancún, Riviera Maya y producciones remotas.
+           </p>
+           <p class="text-lg md:text-xl text-slate-400 max-w-3xl mx-auto mb-10 leading-relaxed font-normal">
+               <strong class="text-white font-semibold">En LiveSellMX</strong> no somos una agencia de marketing tradicional; somos el brazo tecnológico y operativo que tu negocio necesita para vender en vivo con equipo de estándar profesional y portabilidad absoluta.
+           </p>
+           <div class="flex flex-col sm:flex-row justify-center gap-4">
+               <a href="#agendar" class="bg-gradient-to-r from-clip to-orange-600 hover:from-orange-600 hover:to-clip text-white font-extrabold px-8 py-4 rounded-xl text-lg transition-all shadow-xl shadow-clip/20 flex items-center justify-center gap-3 group">
+                   <span>Agendar Mi Producción</span>
+                   <svg class="w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+               </a>
+               <a href="#paquetes" class="bg-slate-900/80 hover:bg-slate-800 border border-slate-700 text-slate-200 font-semibold px-8 py-4 rounded-xl text-lg transition flex items-center justify-center gap-2">
+                   <span>Ver Paquetes e Inversión</span>
+               </a>
+           </div>
+       </header>
 
-        <!-- EL PROBLEMA / SOLUCIÓN -->
-        <section aria-labelledby="soluciones-title" class="bg-brand-card/60 border-y border-slate-800/80 py-20 relative backdrop-blur-sm">
-            <h2 id="soluciones-title" class="sr-only">Nuestras Soluciones de Transmisión</h2>
-            <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-8">
-                <!-- Tarjeta 1 -->
-                <article class="bg-brand-dark/90 p-8 rounded-2xl border border-slate-800 hover:border-slate-700 transition group">
-                    <div class="w-12 h-12 bg-red-500/10 text-red-500 rounded-xl flex items-center justify-center mb-6 border border-red-500/20 group-hover:scale-110 transition-transform">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"></path></svg>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3 text-white">El celular ya no es suficiente</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">Las transmisiones borrosas, con imagen temblorosa y ruido de fondo generan desconfianza. El comprador abandona tu Live en menos de 5 segundos si no percibe profesionalismo.</p>
-                </article>
-                <!-- Tarjeta 2 -->
-                <article class="bg-brand-dark/90 p-8 rounded-2xl border border-slate-800 hover:border-slate-700 transition group">
-                    <div class="w-12 h-12 bg-emerald-500/10 text-emerald-400 rounded-xl flex items-center justify-center mb-6 border border-emerald-500/20 group-hover:scale-110 transition-transform">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path></svg>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3 text-white">Ingeniería de Audio y Broadcast en Vivo</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">Operamos con equipo de estandar profesional dedicado y microfonía inalámbrica procesado en tiempo real. Cero eco en locales cerrados, cero ruido de aire acondicionado. Tu voz vende con nitidez total.</p>
-                </article>
-                <!-- Tarjeta 3 -->
-                <article class="bg-brand-dark/90 p-8 rounded-2xl border border-slate-800 hover:border-slate-700 transition group">
-                    <div class="w-12 h-12 bg-blue-500/10 text-blue-400 rounded-xl flex items-center justify-center mb-6 border border-blue-500/20 group-hover:scale-110 transition-transform">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3 text-white">Multi-cámara 4K y Drone & 360</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">Switching en vivo multicámara 4K, tomas cenitales para productos e integraciones aéreas en preventas y ventas inmobiliarias. Una experiencia de compra inmersiva de nivel televisivo.</p>
-                </article>
-            </div>
-        </section>
+       <section class="bg-brand-card/60 border-y border-slate-800/80 py-20 relative backdrop-blur-sm">
+           <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-8">
+               <article class="bg-brand-dark/90 p-8 rounded-2xl border border-slate-800 hover:border-slate-700 transition group">
+                   <div class="w-12 h-12 bg-red-500/10 text-red-500 rounded-xl flex items-center justify-center mb-6 border border-red-500/20 group-hover:scale-110 transition-transform">
+                       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"></path></svg>
+                   </div>
+                   <h3 class="text-xl font-bold mb-3 text-white">El celular ya no es suficiente</h3>
+                   <p class="text-slate-400 text-sm leading-relaxed">Las transmisiones borrosas, con imagen temblorosa y ruido de fondo generan desconfianza. El comprador abandona tu Live en menos de 5 segundos.</p>
+               </article>
+               <article class="bg-brand-dark/90 p-8 rounded-2xl border border-slate-800 hover:border-slate-700 transition group">
+                   <div class="w-12 h-12 bg-emerald-500/10 text-emerald-400 rounded-xl flex items-center justify-center mb-6 border border-emerald-500/20 group-hover:scale-110 transition-transform">
+                       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path></svg>
+                   </div>
+                   <h3 class="text-xl font-bold mb-3 text-white">Ingeniería de Audio Profesional</h3>
+                   <p class="text-slate-400 text-sm leading-relaxed">Equipo de estándar profesional dedicado y microfonía inalámbrica procesada en tiempo real. Cero eco, cero ruido. Tu voz vende con nitidez total.</p>
+               </article>
+               <article class="bg-brand-dark/90 p-8 rounded-2xl border border-slate-800 hover:border-slate-700 transition group">
+                   <div class="w-12 h-12 bg-blue-500/10 text-blue-400 rounded-xl flex items-center justify-center mb-6 border border-blue-500/20 group-hover:scale-110 transition-transform">
+                       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                   </div>
+                   <h3 class="text-xl font-bold mb-3 text-white">Multi-cámara 4K y Drone</h3>
+                   <p class="text-slate-400 text-sm leading-relaxed">Switching en vivo multicámara 4K, tomas cenitales para productos e integraciones aéreas. Experiencia de compra inmersiva de nivel televisivo.</p>
+               </article>
+           </div>
+       </section>
 
-        <!-- PAQUETES DE INVERSIÓN -->
-        <section id="paquetes" aria-labelledby="paquetes-title" class="max-w-7xl mx-auto px-6 py-24 relative">
-            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-5xl h-[400px] bg-gradient-to-r from-clip/10 to-stripe/10 blur-[130px] -z-10 pointer-events-none" aria-hidden="true"></div>
+       <section class="max-w-7xl mx-auto px-6 py-24 border-t border-slate-800">
+           <div class="text-center max-w-3xl mx-auto mb-16">
+               <h2 class="text-3xl md:text-5xl font-extrabold mb-4">Lo que dicen nuestros clientes</h2>
+               <p class="text-slate-400 text-sm leading-relaxed">
+                   Empresas en Cancún y Riviera Maya han aumentado sus conversiones en vivo con nuestra tecnología de transmisión profesional.
+               </p>
+           </div>
 
-            <header class="text-center max-w-3xl mx-auto mb-16">
-                <h2 id="paquetes-title" class="text-3xl md:text-5xl font-extrabold mb-4">Inversión y Paquetes de Producción</h2>
-                <p class="text-slate-400 text-sm leading-relaxed">
-                    Precios transparentes para el Caribe Mexicano. Selecciona tu formato y agenda directamente en nuestro sistema. Recibirás tu enlace de pago asignado al confirmar los detalles de tu locación.
-                </p>
-            </header>
+           <div class="grid md:grid-cols-3 gap-8 testimonial-container">
+               <article class="bg-brand-card/90 border border-slate-800 p-8 rounded-2xl hover:border-slate-700 transition fade-in-up" style="animation-delay: 0.1s">
+                   <div class="flex items-center gap-1 mb-4">
+                       <svg class="w-5 h-5 text-clip" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                       <svg class="w-5 h-5 text-clip" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                       <svg class="w-5 h-5 text-clip" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                       <svg class="w-5 h-5 text-clip" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                       <svg class="w-5 h-5 text-clip" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                   </div>
+                   <p class="text-slate-300 text-sm mb-6 leading-relaxed italic">
+                       "Aumentamos nuestras ventas en vivo un 340% después de usar LiveSellMX. La calidad de transmisión y el audio impecable generan confianza inmediata en nuestros clientes. Es la diferencia entre una venta y diez."
+                   </p>
+                   <div class="flex items-center gap-3">
+                       <div class="w-10 h-10 rounded-full bg-gradient-to-br from-clip to-orange-600 flex items-center justify-center text-white font-bold text-sm">
+                           CR
+                       </div>
+                       <div>
+                           <p class="font-bold text-white text-sm">Carlos Reyes</p>
+                           <p class="text-xs text-slate-400">Boutique de Lujo, Playa del Carmen</p>
+                       </div>
+                   </div>
+               </article>
 
-            <div class="grid lg:grid-cols-3 gap-8 items-stretch">
-                
-                <!-- PAQUETE 1: COMERCIO LOCAL -->
-                <article class="bg-brand-card/90 border border-slate-800 rounded-3xl p-8 flex flex-col justify-between relative hover:border-slate-600 transition backdrop-blur-md">
-                    <div>
-                        <span class="bg-slate-800 text-slate-300 text-xs uppercase font-bold px-3 py-1 rounded-full border border-slate-700">Boutiques & Retail</span>
-                        <h3 class="text-2xl font-bold mt-4 mb-2">Live Commerce Express</h3>
-                        <p class="text-slate-400 text-sm mb-6">Llevamos el estudio de TV directamente a tu tienda en Cancún o Playa del Carmen.</p>
-                        <div class="mb-6">
-                            <span class="text-4xl font-extrabold">$8,500</span> <span class="text-slate-400 text-sm">MXN / sesión</span>
-                            <div class="flex items-center gap-2 mt-2 text-xs text-slate-300 bg-slate-900/80 p-2 rounded-lg border border-slate-800">
-                                <svg class="w-4 h-4 text-clip shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path></svg>
-                                <span>Meses sin intereses disponibles*</span>
-                            </div>
-                        </div>
-                        <ul class="space-y-3 text-sm text-slate-300 mb-8" role="list">
-                            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg> Set móvil montado en 30 minutos</li>
-                            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg> 2 Horas de transmisión en directo</li>
-                            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg> 2 Cámaras (Principal + Detalle/Cenital)</li>
-                            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg> Audio inalámbrico procesado</li>
-                            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg> Monitoreo y moderación de chat en directo</li>
-                            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg> 2 Clips verticales post-producidos de regalo</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <a href="#agendar" onclick="document.getElementById('servicio').value='express';" class="w-full bg-slate-800 hover:bg-slate-700 border border-slate-700 text-white font-bold py-3.5 rounded-xl block text-center transition shadow-lg text-sm">
-                            Agendar Producción
-                        </a>
-                    </div>
-                </article>
+               <article class="bg-brand-card/90 border border-slate-800 p-8 rounded-2xl hover:border-slate-700 transition fade-in-up" style="animation-delay: 0.2s">
+                   <div class="flex items-center gap-1 mb-4">
+                       <svg class="w-5 h-5 text-clip" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                       <svg class="w-5 h-5 text-clip" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                       <svg class="w-5 h-5 text-clip" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                       <svg class="w-5 h-5 text-clip" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                       <svg class="w-5 h-5 text-clip" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                   </div>
+                   <p class="text-slate-300 text-sm mb-6 leading-relaxed italic">
+                       "El drone y las tomas aéreas de nuestras propiedades generaron 15 pre-ventas en una sola transmisión. Los inversionistas se sienten realmente impresionados por la calidad cinematográfica."
+                   </p>
+                   <div class="flex items-center gap-3">
+                       <div class="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center text-white font-bold text-sm">
+                           MG
+                       </div>
+                       <div>
+                           <p class="font-bold text-white text-sm">María González</p>
+                           <p class="text-xs text-slate-400">Desarrolladora Inmobiliaria, Cancún</p>
+                       </div>
+                   </div>
+               </article>
 
-                <!-- PAQUETE 2: INMOBILIARIO (DESTACADO) -->
-                <article class="bg-gradient-to-b from-brand-card to-slate-900 border-2 border-clip rounded-3xl p-8 flex flex-col justify-between relative shadow-2xl shadow-clip/10 backdrop-blur-md">
-                    <div class="absolute -top-4 right-8 bg-gradient-to-r from-clip to-orange-500 text-white text-xs uppercase font-extrabold px-4 py-1.5 rounded-full tracking-wider shadow-md">
-                        Mayor Conversión
-                    </div>
-                    <div>
-                        <span class="bg-clip/20 text-clip text-xs uppercase font-bold px-3 py-1 rounded-full border border-clip/30">Real Estate & High Ticket</span>
-                        <h3 class="text-2xl font-bold mt-4 mb-2">Open House & Tour Aéreo</h3>
-                        <p class="text-slate-400 text-sm mb-6">Vende desarrollos de la Riviera Maya a inversionistas nacionales y extranjeros en tiempo real.</p>
-                        <div class="mb-6">
-                            <span class="text-4xl font-extrabold">$9,500</span> <span class="text-slate-400 text-sm">MXN / propiedad</span>
-                            <div class="flex items-center gap-2 mt-2 text-xs text-amber-300 bg-amber-500/10 p-2 rounded-lg border border-amber-500/20">
-                                <svg class="w-4 h-4 text-amber-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path></svg>
-                                <span>Meses sin intereses disponibles*</span>
-                            </div>
-                        </div>
-                        <ul class="space-y-3 text-sm text-slate-300 mb-8" role="list">
-                            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-clip shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg> Toma de recursos con Dron 4K (Exteriores)</li>
-                            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-clip shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg> Edición express de intro cinematográfica</li>
-                            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-clip shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg> 2 Horas de recorrido en vivo en interiores</li>
-                            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-clip shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg> Control de eco y reverberación para espacios vacíos</li>
-                            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-clip shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg> Interacción y lectura de preguntas para el Bróker</li>
-                            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-clip shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg> Entrega de archivo máster en alta definición</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <a href="#agendar" onclick="document.getElementById('servicio').value='realestate';" class="w-full bg-gradient-to-r from-clip to-orange-600 hover:from-orange-600 hover:to-clip text-white font-extrabold py-3.5 rounded-xl block text-center transition shadow-lg shadow-clip/20 text-sm">
-                            Agendar producción
-                        </a>
-                    </div>
-                </article>
+               <article class="bg-brand-card/90 border border-slate-800 p-8 rounded-2xl hover:border-slate-700 transition fade-in-up" style="animation-delay: 0.3s">
+                   <div class="flex items-center gap-1 mb-4">
+                       <svg class="w-5 h-5 text-clip" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                       <svg class="w-5 h-5 text-clip" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                       <svg class="w-5 h-5 text-clip" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                       <svg class="w-5 h-5 text-clip" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                       <svg class="w-5 h-5 text-clip" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                   </div>
+                   <p class="text-slate-300 text-sm mb-6 leading-relaxed italic">
+                       "Nuestro podcast tiene ahora 50,000 oyentes gracias al audio limpio y profesional de LiveSellMX. Los patrocinadores están mucho más interesados en publicitar en nuestro show."
+                   </p>
+                   <div class="flex items-center gap-3">
+                       <div class="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white font-bold text-sm">
+                           JM
+                       </div>
+                       <div>
+                           <p class="font-bold text-white text-sm">Javier Molina</p>
+                           <p class="text-xs text-slate-400">Productor de Podcast, Isla Mujeres</p>
+                       </div>
+                   </div>
+               </article>
+           </div>
+       </section>
 
-                <!-- PAQUETE 3: PODCAST / WEBINAR -->
-                <article class="bg-brand-card/90 border border-slate-800 rounded-3xl p-8 flex flex-col justify-between relative hover:border-slate-600 transition backdrop-blur-md">
-                    <div>
-                        <span class="bg-slate-800 text-slate-300 text-xs uppercase font-bold px-3 py-1 rounded-full border border-slate-700">Infoproductos & Autoridad</span>
-                        <h3 class="text-2xl font-bold mt-4 mb-2">Podcast in a Box</h3>
-                        <p class="text-slate-400 text-sm mb-6">Grabación móvil en tu oficina, sala de juntas o estudio colaborativo en Cancún.</p>
-                        <div class="mb-6">
-                            <span class="text-4xl font-extrabold">$7,500</span> <span class="text-slate-400 text-sm">MXN / episodio</span>
-                            <div class="flex items-center gap-2 mt-2 text-xs text-slate-300 bg-slate-900/80 p-2 rounded-lg border border-slate-800">
-                                <svg class="w-4 h-4 text-clip shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path></svg>
-                                <span>Meses sin intereses disponibles*</span>
-                            </div>
-                        </div>
-                        <ul class="space-y-3 text-sm text-slate-300 mb-8" role="list">
-                            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg> Hasta 2 horas de grabación continua</li>
-                            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg> 2 Cámaras sincronizadas por hardware</li>
-                            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg> Mezcla de audio en consola para 2 locutores</li>
-                            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg> Disparo de cortinillas y jingles en vivo</li>
-                            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg> Opción de transmisión en vivo o entrega de crudos</li>
-                            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg> Calidad de audio nivel broadcast garantizada</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <a href="#agendar" onclick="document.getElementById('servicio').value='podcast';" class="w-full bg-slate-800 hover:bg-slate-700 border border-slate-700 text-white font-bold py-3.5 rounded-xl block text-center transition shadow-lg text-sm">
-                            Agendar Producción
-                        </a>
-                    </div>
-                </article>
+       <section class="bg-brand-card/60 border-y border-slate-800/80 py-24 relative backdrop-blur-sm">
+           <div class="max-w-7xl mx-auto px-6">
+               <div class="text-center max-w-3xl mx-auto mb-16">
+                   <h2 class="text-3xl md:text-5xl font-extrabold mb-4">Mira nuestras producciones en acción</h2>
+                   <p class="text-slate-400 text-sm leading-relaxed">
+                       Clips de 10 segundos que muestran la calidad de transmisión, audio y edición que entregamos.
+                   </p>
+               </div>
 
-            </div>
-        </section>
+               <div class="grid md:grid-cols-3 gap-8">
+                   <article class="bg-brand-dark/90 rounded-2xl overflow-hidden border border-slate-800 hover:border-slate-700 transition group">
+                       <div class="aspect-video bg-slate-800 flex items-center justify-center relative overflow-hidden">
+                           <svg class="w-16 h-16 text-clip/50 group-hover:text-clip transition" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg>
+                           <div class="absolute inset-0 bg-gradient-to-tr from-clip/20 to-transparent opacity-0 group-hover:opacity-100 transition"></div>
+                       </div>
+                       <div class="p-6">
+                           <h3 class="font-bold text-white mb-2">Live Commerce - Boutique Lujo</h3>
+                           <p class="text-slate-400 text-xs">Transmisión en vivo de colección premium con multi-cámara 4K y audio limpio. 340% aumento en conversiones.</p>
+                           <div class="mt-4 text-xs font-semibold text-clip">Clip de 10 segundos</div>
+                       </div>
+                   </article>
 
-        <!-- SECCIÓN DE AGENDAMIENTO & WEB3FORMS -->
-        <section id="agendar" aria-labelledby="reserva-title" class="max-w-6xl mx-auto px-6 py-24 border-t border-slate-800 relative">
-            <div class="grid lg:grid-cols-12 gap-12 items-center">
-                
-                <!-- Explicación de Flujo y Pasarelas -->
-                <div class="lg:col-span-5 space-y-6">
-                    <span class="text-clip text-xs font-extrabold uppercase tracking-widest">Sistema de Reservas</span>
-                    <h2 id="reserva-title" class="text-3xl sm:text-4xl font-extrabold text-white leading-tight">
-                        Agenda tu producción en 3 pasos simples.
-                    </h2>
-                    <p class="text-slate-400 text-sm leading-relaxed">
-                        Al ingresar tus datos y seleccionar tu paquete, nuestro equipo de ingeniería técnica revisará los requerimientos de tu locación y te enviará por WhatsApp y correo tu <strong class="text-white">enlace de pago asignado (Stripe o Clip)</strong> para asegurar tu fecha.
-                    </p>
-                    
-                    <div class="space-y-4 pt-4 border-t border-slate-800/80">
-                        <div class="flex items-start gap-3">
-                            <div class="w-8 h-8 rounded-lg bg-stripe/20 border border-stripe/30 flex items-center justify-center text-stripe shrink-0 font-bold text-sm" aria-hidden="true">1</div>
-                            <div>
-                                <h4 class="text-sm font-bold text-white">Pagos Internacionales o Tarjetas</h4>
-                                <p class="text-xs text-slate-400 mt-0.5">Enlace personalizado seguro con Visa, Mastercard o Amex a través de <strong class="text-white">Stripe</strong>.</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start gap-3">
-                            <div class="w-8 h-8 rounded-lg bg-clip/20 border border-clip/30 flex items-center justify-center text-clip shrink-0 font-bold text-sm" aria-hidden="true">2</div>
-                            <div>
-                                <h4 class="text-sm font-bold text-white">Meses Sin Intereses* Nacionales</h4>
-                                <p class="text-xs text-slate-400 mt-0.5">Difiere tu inversión hasta a 3, 6 o 9 meses sin intereses* mediante pasarela de <strong class="text-white">Clip México</strong>.</p>
-                            </div>
-                        </div>
-                    </div>
+                   <article class="bg-brand-dark/90 rounded-2xl overflow-hidden border border-slate-800 hover:border-slate-700 transition group">
+                       <div class="aspect-video bg-slate-800 flex items-center justify-center relative overflow-hidden">
+                           <svg class="w-16 h-16 text-clip/50 group-hover:text-clip transition" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg>
+                           <div class="absolute inset-0 bg-gradient-to-tr from-clip/20 to-transparent opacity-0 group-hover:opacity-100 transition"></div>
+                       </div>
+                       <div class="p-6">
+                           <h3 class="font-bold text-white mb-2">Tour Aéreo - Open House</h3>
+                           <p class="text-slate-400 text-xs">Toma con Drone 4K de desarrollo inmobiliario. 15 pre-ventas generadas en una sesión de 2 horas.</p>
+                           <div class="mt-4 text-xs font-semibold text-clip">Clip de 10 segundos</div>
+                       </div>
+                   </article>
 
-                    <!-- Badges Visuales -->
-                    <div class="pt-4 flex items-center gap-4 opacity-80" aria-label="Plataformas de pago seguras">
-                        <div class="px-3 py-1.5 rounded bg-slate-900 border border-slate-800 text-xs font-extrabold text-slate-300 tracking-wider">STRIPE SECURE</div>
-                        <div class="px-3 py-1.5 rounded bg-slate-900 border border-slate-800 text-xs font-extrabold text-clip tracking-wider">CLIP CHECKOUT</div>
-                    </div>
-                </div>
+                   <article class="bg-brand-dark/90 rounded-2xl overflow-hidden border border-slate-800 hover:border-slate-700 transition group">
+                       <div class="aspect-video bg-slate-800 flex items-center justify-center relative overflow-hidden">
+                           <svg class="w-16 h-16 text-clip/50 group-hover:text-clip transition" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg>
+                           <div class="absolute inset-0 bg-gradient-to-tr from-clip/20 to-transparent opacity-0 group-hover:opacity-100 transition"></div>
+                       </div>
+                       <div class="p-6">
+                           <h3 class="font-bold text-white mb-2">Podcast - Grabación Profesional</h3>
+                           <p class="text-slate-400 text-xs">Episodio grabado con 2 cámaras sincronizadas y audio procesado. Calidad broadcast garantizada.</p>
+                           <div class="mt-4 text-xs font-semibold text-clip">Clip de 10 segundos</div>
+                       </div>
+                   </article>
+               </div>
+           </div>
+       </section>
 
-                <!-- Formulario Web3Forms -->
-                <div class="lg:col-span-7 bg-brand-card/90 border border-slate-800 p-8 sm:p-10 rounded-3xl shadow-2xl backdrop-blur-md relative">
-                    <h3 class="text-xl font-bold text-white mb-2">Completa tus datos para reservar fecha</h3>
-                    <p class="text-slate-400 text-xs mb-6">Conectado de forma segura a nuestro buzón de recepción vía Web3Forms.</p>
-                    
-    <!-- FORMULARIO CONFIGURADO PARA WEB3FORMS -->
-    <form action="https://api.web3forms.com/submit" method="POST" class="space-y-4">
-    <!-- Llave verificada que manda directo a livesellmx@gmail.com -->
-    <input type="hidden" name="access_key" value="37385633-451e-4f6a-b21c-27282e934b73">
-    <input type="hidden" name="subject" value="Nueva Solicitud de Reserva y Enlace de Pago - LiveSellMX">
-    <input type="hidden" name="redirect" value="https://kochaproducer.github.io/livesellmx.github.io/">
-                        <div class="grid sm:grid-cols-2 gap-4">
-                            <div>
-                                <label for="nombre" class="block text-xs font-semibold text-slate-300 mb-1">Nombre Completo *</label>
-                                <input type="text" id="nombre" name="nombre" required autocomplete="name" placeholder="Ej. Carlos Mendoza" class="w-full bg-slate-900/90 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:ring-2 focus:ring-clip/50 focus:border-clip transition">
-                            </div>
-                            <div>
-                                <label for="telefono" class="block text-xs font-semibold text-slate-300 mb-1">Teléfono (WhatsApp) *</label>
-                                <input type="tel" id="telefono" name="telefono" required autocomplete="tel" placeholder="Ej. 998 000 0000" class="w-full bg-slate-900/90 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:ring-2 focus:ring-clip/50 focus:border-clip transition">
-                            </div>
-                        </div>
+       <section id="paquetes" class="max-w-7xl mx-auto px-6 py-24 relative">
+           <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-5xl h-[400px] bg-gradient-to-r from-clip/10 to-stripe/10 blur-[130px] -z-10 pointer-events-none"></div>
 
-                        <div>
-                            <label for="email" class="block text-xs font-semibold text-slate-300 mb-1">Correo Electrónico *</label>
-                            <input type="email" id="email" name="email" required autocomplete="email" placeholder="carlos@empresa.com" class="w-full bg-slate-900/90 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:ring-2 focus:ring-clip/50 focus:border-clip transition">
-                        </div>
+           <header class="text-center max-w-3xl mx-auto mb-16">
+               <h2 class="text-3xl md:text-5xl font-extrabold mb-4">Inversión y Paquetes de Producción</h2>
+               <p class="text-slate-400 text-sm leading-relaxed">
+                   Precios transparentes para el Caribe Mexicano. Selecciona tu formato y agenda directamente. Recibirás tu enlace de pago personalizado.
+               </p>
+           </header>
 
-                        <div class="grid sm:grid-cols-2 gap-4">
-                            <div>
-                                <label for="servicio" class="block text-xs font-semibold text-slate-300 mb-1">Paquete o Servicio de Interés *</label>
-                                <select id="servicio" name="servicio" required class="w-full bg-slate-900/90 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:ring-2 focus:ring-clip/50 focus:border-clip transition appearance-none">
-                                    <option value="express">Live Commerce Express ($8,500 MXN)</option>
-                                    <option value="realestate" selected>Open House & Tour Aéreo ($9,500 MXN)</option>
-                                    <option value="podcast">Podcast in a Box ($7,500 MXN)</option>
-                                    <option value="custom">Proyecto Personalizado / Socio Afiliado</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label for="fecha" class="block text-xs font-semibold text-slate-300 mb-1">Fecha Tentativa de Grabación</label>
-                                <input type="date" id="fecha" name="fecha" class="w-full bg-slate-900/90 border border-slate-700 rounded-xl px-4 py-3 text-sm text-slate-300 focus:outline-none focus:ring-2 focus:ring-clip/50 focus:border-clip transition">
-                            </div>
-                        </div>
+           <div class="grid lg:grid-cols-3 gap-8 items-stretch">
+               
+               <article class="bg-brand-card/90 border border-slate-800 rounded-3xl p-8 flex flex-col justify-between relative hover:border-slate-600 transition backdrop-blur-md">
+                   <div>
+                       <span class="bg-slate-800 text-slate-300 text-xs uppercase font-bold px-3 py-1 rounded-full border border-slate-700">Boutiques & Retail</span>
+                       <h3 class="text-2xl font-bold mt-4 mb-2">Live Commerce Express</h3>
+                       <p class="text-slate-400 text-sm mb-6">Llevamos el estudio de TV directamente a tu tienda.</p>
+                       <div class="mb-6">
+                           <span class="text-4xl font-extrabold">$8,500</span> <span class="text-slate-400 text-sm">MXN / sesión</span>
+                           <div class="flex items-center gap-2 mt-2 text-xs text-slate-300 bg-slate-900/80 p-2 rounded-lg border border-slate-800">
+                               <svg class="w-4 h-4 text-clip shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path></svg>
+                               <span>Meses sin intereses disponibles*</span>
+                           </div>
+                       </div>
+                       <ul class="space-y-3 text-sm text-slate-300 mb-8">
+                           <li class="flex items-center gap-2"><svg class="w-4 h-4 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg> Set móvil montado en 30 minutos</li>
+                           <li class="flex items-center gap-2"><svg class="w-4 h-4 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg> 2 Horas de transmisión en directo</li>
+                           <li class="flex items-center gap-2"><svg class="w-4 h-4 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg> 2 Cámaras (Principal + Detalle)</li>
+                           <li class="flex items-center gap-2"><svg class="w-4 h-4 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg> Audio inalámbrico procesado</li>
+                           <li class="flex items-center gap-2"><svg class="w-4 h-4 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg> Monitoreo y moderación de chat</li>
+                           <li class="flex items-center gap-2"><svg class="w-4 h-4 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg> 2 Clips verticales post-producidos</li>
+                       </ul>
+                   </div>
+                   <a href="#agendar" onclick="document.getElementById('servicio').value='Live Commerce Express';" class="w-full bg-slate-800 hover:bg-slate-700 border border-slate-700 text-white font-bold py-3.5 rounded-xl block text-center transition shadow-lg text-sm">
+                       Agendar Producción
+                   </a>
+               </article>
 
-                        <div>
-                            <label for="detalles" class="block text-xs font-semibold text-slate-300 mb-1">Detalles de la Locación o Proyecto (Opcional)</label>
-                            <textarea id="detalles" name="detalles" rows="3" placeholder="¿Dónde es la transmisión? ¿Qué productos o propiedad se va a mostrar?" class="w-full bg-slate-900/90 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:ring-2 focus:ring-clip/50 focus:border-clip transition"></textarea>
-                        </div>
-<button type="submit" class="w-full bg-gradient-to-r from-clip to-orange-600 hover:from-orange-600 hover:to-clip text-white font-extrabold py-4 rounded-xl shadow-lg shadow-clip/20 transition flex items-center justify-center gap-2 focus:outline-none focus:ring-2 focus:ring-clip focus:ring-offset-2 focus:ring-offset-brand-card">
-    <span>Solicitar Fecha y Enlace de Pago Asignado</span>
-    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-    </svg>
-</button>
+               <article class="bg-gradient-to-b from-brand-card to-slate-900 border-2 border-clip rounded-3xl p-8 flex flex-col justify-between relative shadow-2xl shadow-clip/10 backdrop-blur-md">
+                   <div class="absolute -top-4 right-8 bg-gradient-to-r from-clip to-orange-500 text-white text-xs uppercase font-extrabold px-4 py-1.5 rounded-full tracking-wider shadow-md">
+                       Mayor Conversión
+                   </div>
+                   <div>
+                       <span class="bg-clip/20 text-clip text-xs uppercase font-bold px-3 py-1 rounded-full border border-clip/30">Real Estate & High Ticket</span>
+                       <h3 class="text-2xl font-bold mt-4 mb-2">Open House & Tour Aéreo</h3>
+                       <p class="text-slate-400 text-sm mb-6">Vende desarrollos a inversionistas nacionales y extranjeros.</p>
+                       <div class="mb-6">
+                           <span class="text-4xl font-extrabold">$9,500</span> <span class="text-slate-400 text-sm">MXN / propiedad</span>
+                           <div class="flex items-center gap-2 mt-2 text-xs text-amber-300 bg-amber-500/10 p-2 rounded-lg border border-amber-500/20">
+                               <svg class="w-4 h-4 text-amber-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path></svg>
+                               <span>Meses sin intereses disponibles*</span>
+                           </div>
+                       </div>
+                       <ul class="space-y-3 text-sm text-slate-300 mb-8">
+                           <li class="flex items-center gap-2"><svg class="w-4 h-4 text-clip shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg> Toma con Dron 4K (Exteriores)</li>
+                           <li class="flex items-center gap-2"><svg class="w-4 h-4 text-clip shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg> Intro cinematográfica editada</li>
+                           <li class="flex items-center gap-2"><svg class="w-4 h-4 text-clip shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg> 2 Horas de recorrido en vivo</li>
+                           <li class="flex items-center gap-2"><svg class="w-4 h-4 text-clip shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg> Control de eco y reverberación</li>
+                           <li class="flex items-center gap-2"><svg class="w-4 h-4 text-clip shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg> Lectura de preguntas para bróker</li>
+                           <li class="flex items-center gap-2"><svg class="w-4 h-4 text-clip shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg> Archivo máster en alta definición</li>
+                       </ul>
+                   </div>
+                   <a href="#agendar" onclick="document.getElementById('servicio').value='Open House & Tour Aéreo';" class="w-full bg-gradient-to-r from-clip to-orange-600 hover:from-orange-600 hover:to-clip text-white font-extrabold py-3.5 rounded-xl block text-center transition shadow-lg shadow-clip/20 text-sm">
+                       Agendar Producción
+                   </a>
+               </article>
 
+               <article class="bg-brand-card/90 border border-slate-800 rounded-3xl p-8 flex flex-col justify-between relative hover:border-slate-600 transition backdrop-blur-md">
+                   <div>
+                       <span class="bg-slate-800 text-slate-300 text-xs uppercase font-bold px-3 py-1 rounded-full border border-slate-700">Infoproductos & Autoridad</span>
+                       <h3 class="text-2xl font-bold mt-4 mb-2">Podcast in a Box</h3>
+                       <p class="text-slate-400 text-sm mb-6">Grabación móvil en tu oficina o sala de juntas.</p>
+                       <div class="mb-6">
+                           <span class="text-4xl font-extrabold">$7,500</span> <span class="text-slate-400 text-sm">MXN / episodio</span>
+                           <div class="flex items-center gap-2 mt-2 text-xs text-slate-300 bg-slate-900/80 p-2 rounded-lg border border-slate-800">
+                               <svg class="w-4 h-4 text-clip shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path></svg>
+                               <span>Meses sin intereses disponibles*</span>
+                           </div>
+                       </div>
+                       <ul class="space-y-3 text-sm text-slate-300 mb-8">
+                           <li class="flex items-center gap-2"><svg class="w-4 h-4 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg> Hasta 2 horas de grabación</li>
+                           <li class="flex items-center gap-2"><svg class="w-4 h-4 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg> 2 Cámaras sincronizadas</li>
+                           <li class="flex items-center gap-2"><svg class="w-4 h-4 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg> Mezcla de audio para 2 locutores</li>
+                           <li class="flex items-center gap-2"><svg class="w-4 h-4 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg> Cortinillas y jingles en vivo</li>
+                           <li class="flex items-center gap-2"><svg class="w-4 h-4 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg> Transmisión o crudos a elegir</li>
+                           <li class="flex items-center gap-2"><svg class="w-4 h-4 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg> Audio broadcast garantizado</li>
+                       </ul>
+                   </div>
+                   <a href="#agendar" onclick="document.getElementById('servicio').value='Podcast in a Box';" class="w-full bg-slate-800 hover:bg-slate-700 border border-slate-700 text-white font-bold py-3.5 rounded-xl block text-center transition shadow-lg text-sm">
+                       Agendar Producción
+                   </a>
+               </article>
 
-                        </form>
+           </div>
+       </section>
 
-                    </div>
-                </div>
+       <section id="agendar" class="max-w-6xl mx-auto px-6 py-24 border-t border-slate-800 relative">
+           <div class="grid lg:grid-cols-12 gap-12 items-center">
+               
+               <div class="lg:col-span-5 space-y-6">
+                   <span class="text-clip text-xs font-extrabold uppercase tracking-widest">Sistema de Reservas</span>
+                   <h2 class="text-3xl sm:text-4xl font-extrabold text-white leading-tight">
+                       Agenda tu producción en 3 pasos simples.
+                   </h2>
+                   <p class="text-slate-400 text-sm leading-relaxed">
+                       Completa el formulario y nuestro equipo técnico revisará tu locación. Recibirás tu <strong class="text-white">enlace de pago personalizado (Stripe o Clip)</strong> por WhatsApp y correo.
+                   </p>
+                   
+                   <div class="space-y-4 pt-4 border-t border-slate-800/80">
+                       <div class="flex items-start gap-3">
+                           <div class="w-8 h-8 rounded-lg bg-stripe/20 border border-stripe/30 flex items-center justify-center text-stripe shrink-0 font-bold text-sm">1</div>
+                           <div>
+                               <h4 class="text-sm font-bold text-white">Pagos Internacionales o Tarjetas</h4>
+                               <p class="text-xs text-slate-400 mt-0.5">Enlace seguro con Visa, Mastercard o Amex vía <strong class="text-white">Stripe</strong>.</p>
+                           </div>
+                       </div>
+                       <div class="flex items-start gap-3">
+                           <div class="w-8 h-8 rounded-lg bg-clip/20 border border-clip/30 flex items-center justify-center text-clip shrink-0 font-bold text-sm">2</div>
+                           <div>
+                               <h4 class="text-sm font-bold text-white">Meses Sin Intereses* Nacionales</h4>
+                               <p class="text-xs text-slate-400 mt-0.5">Difiere hasta 3, 6 o 9 meses sin intereses vía <strong class="text-white">Clip México</strong>.</p>
+                           </div>
+                       </div>
+                   </div>
 
-        </section>
-    </main>
+                   <div class="pt-4 flex items-center gap-4 opacity-80">
+                       <div class="px-3 py-1.5 rounded bg-slate-900 border border-slate-800 text-xs font-extrabold text-slate-300 tracking-wider">STRIPE SECURE</div>
+                       <div class="px-3 py-1.5 rounded bg-slate-900 border border-slate-800 text-xs font-extrabold text-clip tracking-wider">CLIP CHECKOUT</div>
+                   </div>
+               </div>
 
-    <!-- FOOTER -->
-    <footer class="border-t border-slate-800/80 py-12 bg-brand-dark text-center text-sm text-slate-500 max-w-7xl mx-auto px-6" role="contentinfo">
-        <div class="flex items-center justify-center gap-2 text-white font-bold mb-4">
-            <svg class="w-5 h-5 text-clip" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
-            <span>LiveSell MX</span>
-        </div>
-        <p class="mb-3 text-xs md:text-sm">No experimentamos con tu marca; venimos del mundo de la producción profesional. Usamos tecnología portátil de nivel profesional para transmitir desde cualquier lugar con estabilidad total, Creamos transmisiones diseñadas para vender, retener y convertir a tu audiencia en una comunidad activa.</p>
-        <p class="text-[11px] text-slate-500 max-w-3xl mx-auto leading-relaxed border-t border-slate-800/60 pt-4 mt-4">
-            *Meses Sin Intereses (MSI) disponibles con tarjetas participantes de crédito emitidas en México a través de la plataforma de cobro <strong>Clip</strong>. Aplican restricciones, montos mínimos y comisiones por diferimiento según los términos bancarios vigentes en 2026. Procesamiento seguro de tarjetas bancarias internacionales y cobros empresariales gestionados vía <strong>Stripe</strong>.
-        </p>
-    </footer>
-<iframe
-    src="https://api.leadconnectorhq.com/widget/form/vzYqCs15ApxC2rCbZbN9"
-    style="display:none;width:100%;height:100%;border:none;border-radius:8px"
-    id="popup-vzYqCs15ApxC2rCbZbN9" 
-    data-layout="{'id':'POPUP'}"
-    data-trigger-type="showAfter"
-    data-trigger-value="99999999"
-    data-activation-type="alwaysActivated"
-    data-activation-value=""
-    data-deactivation-type="neverDeactivate"
-    data-deactivation-value=""
-    data-form-name="Captacion LiveSellmx"
-    data-height="1012"
-    data-layout-iframe-id="popup-vzYqCs15ApxC2rCbZbN9"
-    data-form-id="vzYqCs15ApxC2rCbZbN9"
-    title="Captacion LiveSellmx"
-    data-modal-height="500"
-        >
-</iframe>
-<script src="https://link.msgsndr.com/js/form_embed.js"></script>
+               <div class="lg:col-span-7 bg-brand-card/90 border border-slate-800 p-8 sm:p-10 rounded-3xl shadow-2xl backdrop-blur-md relative">
+                   <h3 class="text-xl font-bold text-white mb-2">Completa tus datos para reservar</h3>
+                   <p class="text-slate-400 text-xs mb-6">Tus datos se envían directamente a nuestro sistema de gestión.</p>
+                   
+                   <div id="success-message" class="mb-6 p-4 rounded-xl border border-emerald-500/20 bg-emerald-500/10 text-emerald-400 flex flex-col items-center justify-center text-center gap-2">
+                       <svg class="w-8 h-8 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                       <p class="text-sm font-bold text-white">¡Solicitud enviada correctamente!</p>
+                       <p class="text-xs text-slate-300">Te estamos redirigiendo a WhatsApp para enviarte tu enlace de pago...</p>
+                       <button id="whatsapp-manual-btn" class="mt-2 text-xs text-emerald-400 underline hover:text-white transition">Haz clic aquí si no se abre automáticamente</button>
+                   </div>
+
+                   <form id="contactForm" class="space-y-4">
+                       <div class="grid sm:grid-cols-2 gap-4">
+                           <div>
+                               <label for="nombre" class="block text-xs font-semibold text-slate-300 mb-1">Nombre Completo *</label>
+                               <input type="text" id="nombre" name="nombre" required autocomplete="name" placeholder="Ej. Carlos Mendoza" class="w-full bg-slate-900/90 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:ring-2 focus:ring-clip/50 focus:border-clip transition">
+                           </div>
+                           <div>
+                               <label for="phone" class="block text-xs font-semibold text-slate-300 mb-1">Teléfono (WhatsApp) *</label>
+                               <input type="tel" id="phone" name="phone" required autocomplete="tel" placeholder="Ej. 998 000 0000" class="w-full bg-slate-900/90 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:ring-2 focus:ring-clip/50 focus:border-clip transition">
+                           </div>
+                       </div>
+
+                       <div>
+                           <label for="email" class="block text-xs font-semibold text-slate-300 mb-1">Correo Electrónico *</label>
+                           <input type="email" id="email" name="email" required autocomplete="email" placeholder="carlos@empresa.com" class="w-full bg-slate-900/90 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:ring-2 focus:ring-clip/50 focus:border-clip transition">
+                       </div>
+
+                       <div class="grid sm:grid-cols-2 gap-4">
+                           <div>
+                               <label for="servicio" class="block text-xs font-semibold text-slate-300 mb-1">Paquete o Servicio *</label>
+                               <select id="servicio" name="service" required class="w-full bg-slate-900/90 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:ring-2 focus:ring-clip/50 focus:border-clip transition appearance-none cursor-pointer">
+                                   <option value="">Selecciona un paquete</option>
+                                   <option value="Live Commerce Express">Live Commerce Express ($8,500 MXN)</option>
+                                   <option value="Open House & Tour Aéreo" selected>Open House & Tour Aéreo ($9,500 MXN)</option>
+                                   <option value="Podcast in a Box">Podcast in a Box ($7,500 MXN)</option>
+                                   <option value="Proyecto Personalizado">Proyecto Personalizado / Socio Afiliado</option>
+                               </select>
+                           </div>
+                           <div>
+                               <label for="fecha" class="block text-xs font-semibold text-slate-300 mb-1">Fecha Tentativa</label>
+                               <input type="date" id="fecha" name="fecha" class="w-full bg-slate-900/90 border border-slate-700 rounded-xl px-4 py-3 text-sm text-slate-300 focus:outline-none focus:ring-2 focus:ring-clip/50 focus:border-clip transition">
+                           </div>
+                       </div>
+
+                       <div>
+                           <label for="detalles" class="block text-xs font-semibold text-slate-300 mb-1">Detalles de Locación (Opcional)</label>
+                           <textarea id="detalles" name="detalles" rows="3" placeholder="¿Dónde es? ¿Qué se va a mostrar?" class="w-full bg-slate-900/90 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:ring-2 focus:ring-clip/50 focus:border-clip transition resize-none"></textarea>
+                       </div>
+
+                       <button id="submitBtn" type="submit" class="w-full bg-gradient-to-r from-clip to-orange-600 hover:from-orange-600 hover:to-clip text-white font-extrabold py-4 rounded-xl shadow-lg shadow-clip/20 transition flex items-center justify-center gap-2 focus:outline-none focus:ring-2 focus:ring-clip focus:ring-offset-2 focus:ring-offset-brand-card">
+                           <span id="btnText">Solicitar Enlace de Pago</span>
+                           <svg id="btnIcon" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                           </svg>
+                       </button>
+                   </form>
+
+                   <p class="text-[11px] text-slate-500 mt-4 text-center">
+                       Al enviar aceptas nuestro <a href="#" class="underline hover:text-slate-300 transition">Aviso de Privacidad</a> (LFPDPPP). Recibirás un email de confirmación y el enlace de pago por WhatsApp.
+                   </p>
+               </div>
+           </div>
+       </section>
+   </main>
+
+   <footer class="border-t border-slate-800/80 py-12 bg-brand-dark text-center text-sm text-slate-500">
+       <div class="max-w-7xl mx-auto px-6">
+           <div class="flex items-center justify-center gap-2 text-white font-bold mb-4">
+               <svg class="w-5 h-5 text-clip" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+               <span>LiveSell MX</span>
+           </div>
+           <p class="mb-3 text-xs md:text-sm">Producción profesional de Live Shopping, Real Estate y Podcasts con tecnología broadcast portátil. Transmisiones que convierten audiencia en comunidad y comunidad en ventas.</p>
+           <p class="text-[11px] text-slate-500 max-w-3xl mx-auto leading-relaxed border-t border-slate-800/60 pt-4 mt-4">
+               *Meses Sin Intereses (MSI) disponibles con tarjetas participantes de crédito emitidas en México a través de <strong>Clip</strong>. Procesamiento seguro de pagos internacionales vía <strong>Stripe</strong>.
+           </p>
+       </div>
+   </footer>
+
+   <script>
+       // --- MEJORA: Animación Fade-in-up con IntersectionObserver ---
+       document.addEventListener("DOMContentLoaded", function() {
+           const observerOptions = {
+               root: null,
+               rootMargin: '0px',
+               threshold: 0.1 // 10% del elemento debe ser visible
+           };
+
+           const observer = new IntersectionObserver((entries, observer) => {
+               entries.forEach(entry => {
+                   if (entry.isIntersecting) {
+                       entry.target.classList.add('is-visible');
+                       observer.unobserve(entry.target); // Solo animar una vez
+                   }
+               });
+           }, observerOptions);
+
+           // Observar todos los elementos con la clase fade-in-up
+           const elementsToAnimate = document.querySelectorAll('.fade-in-up');
+           elementsToAnimate.forEach(el => observer.observe(el));
+       });
+
+       // --- Script Formulario Webhook ---
+       document.getElementById('contactForm').addEventListener('submit', async function(e) {
+           e.preventDefault();
+           
+           const form = document.getElementById('contactForm');
+           const submitBtn = document.getElementById('submitBtn');
+           const btnText = document.getElementById('btnText');
+           const btnIcon = document.getElementById('btnIcon');
+           const successMessage = document.getElementById('success-message');
+
+           // Cambiar estado del botón a "Enviando..."
+           btnText.innerText = 'Enviando Solicitud...';
+           btnIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>'; // Icono de recarga
+           submitBtn.classList.add('opacity-75', 'cursor-not-allowed');
+           submitBtn.disabled = true;
+
+           // Recolectar datos (incluyendo fecha y detalles para mapear en Make)
+           const data = {
+               name: document.getElementById('nombre').value,
+               phone: document.getElementById('phone').value,
+               email: document.getElementById('email').value,
+               service: document.getElementById('servicio').value,
+               date_requested: document.getElementById('fecha').value || "No especificada",
+               details: document.getElementById('detalles').value || "Sin detalles",
+               source: "Landing Page LiveSellMX",
+               timestamp: new Date().toISOString()
+           };
+
+           try {
+               // Enviar a Make
+               const response = await fetch('https://hook.us2.make.com/965bh4pfi60ymbgxa6fgtz5g1pwdjtnb', {
+                   method: 'POST',
+                   headers: { 'Content-Type': 'application/json' },
+                   body: JSON.stringify(data)
+               });
+
+               if (response.ok) {
+                   // --- MEJORA: Mostrar mensaje de éxito Inline ---
+                   form.style.display = 'none'; // Ocultar formulario
+                   successMessage.style.display = 'flex'; // Mostrar tarjeta de éxito
+
+                   // Configurar enlace de WhatsApp
+                   const waUrl = 'https://wa.me/529985405236?text=' + encodeURIComponent('Hola, acabo de reservar la producción: ' + data.service + '. ¿Cuál es el siguiente paso?');
+                   
+                   // Botón de respaldo por si el popup es bloqueado
+                   document.getElementById('whatsapp-manual-btn').onclick = function() {
+                       window.open(waUrl, '_blank');
+                   };
+
+                   // Intentar abrir WhatsApp automáticamente después de 2 segundos
+                   setTimeout(() => {
+                       window.open(waUrl, '_blank');
+                   }, 2000);
+
+               } else {
+                   // Restaurar botón si hay error del servidor
+                   alert('❌ Hubo un problema al enviar la solicitud. Por favor, contáctanos directamente por WhatsApp.');
+                   restaurarBoton();
+               }
+           } catch (error) {
+               console.error('Error:', error);
+               alert('❌ Error de conexión. Por favor, verifica tu internet y vuelve a intentar o contáctanos por WhatsApp.');
+               restaurarBoton();
+           }
+
+           // Función auxiliar para restaurar el botón en caso de error
+           function restaurarBoton() {
+               btnText.innerText = 'Solicitar Enlace de Pago';
+               btnIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>';
+               submitBtn.classList.remove('opacity-75', 'cursor-not-allowed');
+               submitBtn.disabled = false;
+           }
+       });
+   </script>
 </body>
 </html>
